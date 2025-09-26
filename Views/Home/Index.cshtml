@@ -1,0 +1,49 @@
+@model IEnumerable<BlogWebsite.Models.Blog>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to My Blog</h1>
+    <p>Discover amazing stories, insights, and knowledge shared by our community.</p>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <h2>Latest Blog Posts</h2>
+        @if (Model.Any())
+        {
+            @foreach (var blog in Model)
+            {
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">@blog.Title</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">By @blog.Author - @blog.CreatedDate.ToString("MMMM dd, yyyy")</h6>
+                        <p class="card-text">@blog.Summary</p>
+                        <a asp-controller="Blog" asp-action="Details" asp-route-id="@blog.Id" class="btn btn-primary">Read More</a>
+                    </div>
+                </div>
+            }
+            <div class="text-center">
+                <a asp-controller="Blog" asp-action="Index" class="btn btn-outline-primary">View All Blogs</a>
+            </div>
+        }
+        else
+        {
+            <p>No blog posts available yet.</p>
+            <a asp-controller="Blog" asp-action="Create" class="btn btn-primary">Write the First Blog Post</a>
+        }
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5>Quick Actions</h5>
+            </div>
+            <div class="card-body">
+                <a asp-controller="Blog" asp-action="Create" class="btn btn-success mb-2 w-100">Write New Blog</a>
+                <a asp-controller="Blog" asp-action="Index" class="btn btn-info w-100">Browse All Blogs</a>
+            </div>
+        </div>
+    </div>
+</div>

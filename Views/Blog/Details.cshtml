@@ -1,0 +1,62 @@
+@model BlogWebsite.Models.Blog
+
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<div class="row">
+    <div class="col-md-8">
+        <article>
+            <header class="mb-4">
+                <h1>@Model.Title</h1>
+                <div class="text-muted mb-3">
+                    <small>
+                        By <strong>@Model.Author</strong> 
+                        | Published on @Model.CreatedDate.ToString("MMMM dd, yyyy")
+                        @if (Model.UpdatedDate != Model.CreatedDate)
+                        {
+                            <span> | Updated on @Model.UpdatedDate.ToString("MMMM dd, yyyy")</span>
+                        }
+                    </small>
+                </div>
+            </header>
+
+            <div class="blog-content">
+                @Html.Raw(Model.Content.Replace("\n", "<br />"))
+            </div>
+        </article>
+
+        <div class="mt-5">
+            <a asp-action="Index" class="btn btn-secondary">← Back to All Blogs</a>
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-primary">Edit</a>
+            <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-outline-danger">Delete</a>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5>Blog Information</h5>
+            </div>
+            <div class="card-body">
+                <p><strong>Author:</strong> @Model.Author</p>
+                <p><strong>Published:</strong> @Model.CreatedDate.ToString("MMMM dd, yyyy")</p>
+                @if (Model.UpdatedDate != Model.CreatedDate)
+                {
+                    <p><strong>Last Updated:</strong> @Model.UpdatedDate.ToString("MMMM dd, yyyy")</p>
+                }
+                <p><strong>Summary:</strong> @Model.Summary</p>
+            </div>
+        </div>
+
+        <div class="card mt-3">
+            <div class="card-header">
+                <h5>Actions</h5>
+            </div>
+            <div class="card-body">
+                <a asp-action="Create" class="btn btn-success w-100 mb-2">Write New Blog</a>
+                <a asp-action="Index" class="btn btn-info w-100">Browse All Blogs</a>
+            </div>
+        </div>
+    </div>
+</div>
