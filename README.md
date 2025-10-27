@@ -4,9 +4,9 @@ This repository is the test repository for testing automation workflows.
 It is a short description of what this project does and who it’s for.
 
 ## 🚀 Features
-- Feature 1 – brief explanation of the Information feature  
+- Feature 1 – brief explanation of the Inform feature  
 - Feature 2 – brief explanation of the Warning feature
-- Feature 3 – brief explanation of the Information & Warning features
+- Feature 3 – brief explanation of the Inform & Warning features
 
 ## 📦 Installation
 Clone the repository:
